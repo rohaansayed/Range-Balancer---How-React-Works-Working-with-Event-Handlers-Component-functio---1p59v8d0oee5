@@ -1,26 +1,31 @@
 
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import '../styles/App.css';
 const App = () => {
-//code here 
-  const [value,setValue]=useState(false)
-  
-  const handleClick=()=>{
-    setValue(!value)
-    
-  }
-  return (
-    <div className="App">
-      <button id="btn1" onClick={handleClick}>
-      {value ? "ON" : "OFF"}
-      </button>
-      <br />
-      <br />
-      <button id="btn2" onClick={handleClick}>
-        {value ? "OFF" : "ON"}
-      </button>
-    </div>
-  );
+  const [a,setA] = useState(0)
+  const [b,setB] = useState(50)
+  const [t,setT] = useState(50)
+  return (
+    <div id="main">
+
+      <div id="max-sum-holder">
+        Input max sum:-
+        <input type={"number"} value={t} onChange={e=> setT(e.target.value)}/>
+      </div>
+      <div id="range-a-holder">
+        <input type={"range"} value={a} onChange={(e)=>setA(e.target.value)} max={t-b}/>
+        <span id="range-a-value">{a}</span>
+      </div>
+      <div  id="range-b-holder">
+        <input type={"range"} value={b} onChange={(e)=>setB(e.target.value)} max={t-a}/>
+        <span id="range-b-value">{b}</span>
+      </div>
+      <div id="sum">
+            {[a,b].map(Number).reduce((sum,cur)=>sum+cur,0)}
+      </div>
+    </div>
+  )
 }
 
-export default App;
+
+export default App;
